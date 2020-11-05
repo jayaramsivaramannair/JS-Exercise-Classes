@@ -161,9 +161,41 @@ console.log(student1.speak());
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(attrObj) {
+    super(attrObj);
+    this.specialty = attrObj.specialty;
+    this.favLanguage = attrObj.favLanguage;
+    this.catchPhrase = attrObj.catchPhrase
+  }
 
+  demo(subject) {
+    return `Today we are learning about ${subject}`
+  }
+
+  grade(studentObj, subject) {
+    return `${studentObj.name} receives a perfect score on ${subject}`;
+  }
 }
+
+const instructor1 = new Instructor({
+  name: 'Ryan',
+  age : '41',
+  location : 'Colorado City',
+  specialty : 'React',
+  favLanguage : 'Python',
+  catchPhrase : 'Use it or Lose it!'
+});
+
+let studentObj = {
+  name : 'Jayaram',
+  age : 36, 
+  location: 'New York City'
+};
+
+console.log(instructor1.speak());
+console.log(instructor1.demo('Prototypes'));
+console.log(instructor1.grade(studentObj, 'Prototypes and Classes'));
 
 /*
   TASK 5
@@ -225,5 +257,6 @@ if (typeof exports !== 'undefined') {
   if (Student) { module.exports.Student = Student }
   if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
+
 
 
