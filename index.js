@@ -86,8 +86,39 @@ console.log(person1.toString());
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0
+  }
 
+  fill(gallons) {
+    this.tank += gallons;
+    return `${this.model} currently has ${this.tank} gallons of fuel in the tank`;
+  }
+
+  drive(distance) {
+    let fuelUsed = distance / this.milesPerGallon;
+    let allowableDistance = this.tank * this.milesPerGallon;
+    if(distance < allowableDistance) {
+      this.odometer += distance;
+      this.tank -= fuelUsed;
+      return `${this.model} has been driven ${this.odometer} miles and it currently has ${this.tank} gallons of fuel in its tank.`;
+    } else {
+      this.tank = 0;
+      this.odometer += allowableDistance;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
+
+const honda = new Car('Civic', 29);
+console.log(honda.fill(3));
+console.log(honda.drive(58));
+console.log(honda.drive(35));
+console.log(honda.fill(2.5));
+
 
 /*
   TASK 3
@@ -171,6 +202,8 @@ class ProjectManager {
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
+
+
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
   if (Airplane) { module.exports.Airplane = Airplane }
@@ -181,3 +214,4 @@ if (typeof exports !== 'undefined') {
   if (Student) { module.exports.Student = Student }
   if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
+
