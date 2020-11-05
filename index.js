@@ -133,8 +133,19 @@ console.log(honda.fill(2.5));
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(attrObj) {
+    this.name = attrObj.name;
+    this.age = attrObj.age;
+    this.location = attrObj.location
+  }
 
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+let student1 = new Lambdasian({name : 'Jayaram Nair', age : 36, location : 'New York City'});
+console.log(student1.speak());
 
 /*
   TASK 4
@@ -214,4 +225,5 @@ if (typeof exports !== 'undefined') {
   if (Student) { module.exports.Student = Student }
   if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
+
 
