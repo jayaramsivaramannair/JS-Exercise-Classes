@@ -187,7 +187,7 @@ const instructor1 = new Instructor({
   catchPhrase : 'Use it or Lose it!'
 });
 
-let studentObj = {
+let lambda1 = {
   name : 'Jayaram',
   age : 36, 
   location: 'New York City'
@@ -195,7 +195,7 @@ let studentObj = {
 
 console.log(instructor1.speak());
 console.log(instructor1.demo('Prototypes'));
-console.log(instructor1.grade(studentObj, 'Prototypes and Classes'));
+console.log(instructor1.grade(lambda1, 'Prototypes and Classes'));
 
 /*
   TASK 5
@@ -212,9 +212,50 @@ console.log(instructor1.grade(studentObj, 'Prototypes and Classes'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian{
+  constructor(studentObj) {
+    super(studentObj);
+    this.previousBackground = studentObj.previousBackground;
+    this.className = studentObj.className;
+    this.favSubjects = studentObj.favSubjects;
+  }
+
+  listSubjects() {
+    let favSub = "Loving ";
+    let lastSub = this.favSubjects[this.favSubjects.length - 1];
+    this.favSubjects.forEach(function(e) {
+      if(e === lastSub) {
+        favSub += `${e}!`;
+      } else {
+        favSub += `${e}, `;
+      }
+    });
+    return `${favSub}`;
+  }
+
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 
 }
+
+let studentObj = {
+  name: 'Jayaram Nair',
+  age: 36,
+  location: 'New York City',
+  previousBackground : 'Accountant',
+  className : 'WebPT24',
+  favSubjects : ['C++', 'Recursion', 'Algorithms', 'Javascript']
+}
+
+let jayaram = new Student(studentObj);
+console.log(jayaram.listSubjects());
+console.log(jayaram.PRAssignment('Array Methods and Callbacks'));
+console.log(jayaram.sprintChallenge('JS Fundamentals'));
 
 /*
   TASK 6
