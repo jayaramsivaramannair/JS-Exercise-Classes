@@ -270,9 +270,38 @@ console.log(jayaram.sprintChallenge('JS Fundamentals'));
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor {
+  constructor(managerObj) {
+    super(managerObj);
+    this.gradClassName = managerObj.gradClassName;
+    this.favInstructor = managerObj.favInstructor
+  }
 
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @${channel} standy times!`
+  }
+
+  debugsCode(studentObj, subject) {
+    return `${this.name} debugs ${studentObj.name}'s code on ${subject}`;
+  }
 }
+
+const manager1 = {
+  name: 'Dan Fresner',
+  age : '32',
+  location : 'Jackson, Wyoming',
+  specialty : 'React Native',
+  favLanguage : 'Java',
+  catchPhrase : 'Things left unsaid have more power than things said!',
+  gradClassName : 'WebPT24',
+  favInstructor : 'Nathan Braun'
+};
+
+const project1 = new ProjectManager(manager1);
+console.log(project1.standUp('hired'));
+console.log(project1.debugsCode(studentObj, 'JS Classes'));
+
+
 
 /*
   STRETCH PROBLEM (no tests!)
@@ -298,6 +327,7 @@ if (typeof exports !== 'undefined') {
   if (Student) { module.exports.Student = Student }
   if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
+
 
 
 
